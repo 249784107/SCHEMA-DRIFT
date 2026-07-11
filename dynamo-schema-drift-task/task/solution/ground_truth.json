@@ -1,0 +1,42 @@
+{
+  "ORD-TRAP-0001": {
+    "trap": "terminal_status_protection",
+    "expected": {
+      "status": "cancelled",
+      "price_amount_minor_units": 12000,
+      "rule_fired": "rule_1_terminal_status"
+    }
+  },
+  "ORD-TRAP-0002": {
+    "trap": "logical_clock_overrides_generation",
+    "expected": {
+      "status": "processing",
+      "price_amount_minor_units": 9999,
+      "rule_fired": "rule_2_logical_clock"
+    }
+  },
+  "ORD-TRAP-0003": {
+    "trap": "schema_only_generation_precedence",
+    "expected": {
+      "status": "shipped",
+      "price_amount_minor_units": 5000,
+      "rule_fired": "rule_3_schema_only"
+    }
+  },
+  "ORD-TRAP-0004": {
+    "trap": "fallback_highest_generation",
+    "expected": {
+      "status": "delivered",
+      "line_items_quantity_sku-222": 2,
+      "rule_fired": "rule_4_fallback_generation"
+    }
+  },
+  "ORD-TRAP-0005": {
+    "trap": "terminal_plus_schema_only",
+    "expected": {
+      "status": "refunded",
+      "price_amount_minor_units": 1500,
+      "rule_fired": "rule_1_then_rule_3"
+    }
+  }
+}

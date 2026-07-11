@@ -1,0 +1,45 @@
+# ============================================================================
+# DRAFT task manifest. I could not fetch the authoritative Harbor manifest
+# schema from https://project-dynamo.learn.joinhandshake.com/workflow (no
+# network access in this environment), so field names / structure below are
+# a best-effort based on the standard pattern described in the brief
+# (container-based, agent works in /app, separate verifier, pass/fail).
+# BEFORE COMMITTING: diff this against a real example task.yaml already in
+# the dynamo-1438858-data-querying-and-databases repo (there should be
+# reference tasks checked in) and rename/restructure fields to match exactly.
+# ============================================================================
+
+name: schema-drift-sanitizer-eventual-consistency-resolver
+category: "Data Querying and Databases"
+sub_category: "NoSQL and Document Stores"
+
+description: >
+  Migrate a 10-generation, schema-drifted MongoDB order collection with
+  out-of-order microservice updates into a unified schema, resolving
+  conflicts per a disclosed precedence rule set.
+
+difficulty: hard
+expert_time_estimate_hours: 5.5
+
+agent_workdir: /app
+
+build:
+  dockerfile: Dockerfile
+  context: .
+
+verifier:
+  entrypoint: "python3 /verifier/verify.py"
+  timeout_seconds: 1200
+  pass_criteria: "exit code 0"
+
+resources:
+  cpu: 2
+  memory_gb: 4
+  network: none
+
+tags:
+  - mongodb
+  - schema-migration
+  - eventual-consistency
+  - conflict-resolution
+  - document-store
